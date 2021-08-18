@@ -51,17 +51,52 @@
       if (typeof web3 !== 'undefined') {
         web3 = new Web3(web3.currentProvider);
       } else {
-        web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:7545'));
+        web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
       }
 
       // Set Account
       web3.eth.defaultAccount = web3.eth.accounts[0];
 
       // Set Contract Abi
-      var contractAbi = []; // Add Your Contract ABI here!!!
+      var contractAbi = [
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "candidateName",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_name",
+				"type": "string"
+			}
+		],
+		"name": "setCandidate",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	}
+]
 
       // Set Contract Address
-      var contractAddress = ''; // Add Your Contract address here!!!
+      var contractAddress = '0xc1516F72D6ff1cB109aBF7A119B593937c7bbD77'
 
       // Set the Contract
       var contract = web3.eth.contract(contractAbi).at(contractAddress);
